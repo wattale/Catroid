@@ -205,8 +205,8 @@ public class InternFormulaParser {
 			} catch (InternFormulaParserException parserException) {
 				if (parserException.isCalculationErrorOffsetInBrackets()) {
 					currentTokenParseIndex += curElem.getRoot().getInternTokenList().size() + 1;
-					throw parserException;
 				}
+				throw parserException;
 			}
 
 			handleOperator(operatorStringValue, curElem, loopTermTree);
@@ -252,8 +252,8 @@ public class InternFormulaParser {
 			} catch (InternFormulaParserException parserException) {
 				if (parserException.isCalculationErrorOffsetInBrackets()) {
 					currentTokenParseIndex++;
-					throw parserException;
 				}
+				throw parserException;
 			}
 
 			curElem.replaceElement(new FormulaElement(FormulaElement.ElementType.BRACKET, null, null, null,

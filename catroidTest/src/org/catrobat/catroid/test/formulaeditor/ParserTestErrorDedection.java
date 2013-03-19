@@ -234,6 +234,16 @@ public class ParserTestErrorDedection extends AndroidTestCase {
 		assertNull("Invalid formula parsed:   (42.53", parseTree);
 		int errorTokenIndex = internParser.getErrorTokenIndex();
 		assertEquals("Error Token Index is not as expected", 2, errorTokenIndex);
+		internTokenList.clear();
+
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+
+		internParser = new InternFormulaParser(internTokenList);
+		parseTree = internParser.parseFormula();
+		assertNull("Invalid formula parsed: ( ", parseTree);
+		errorTokenIndex = internParser.getErrorTokenIndex();
+		assertEquals("Error Token Index is not as expected", 0, errorTokenIndex);
+		internTokenList.clear();
 	}
 
 	public void testLefttBracketMissing() {
