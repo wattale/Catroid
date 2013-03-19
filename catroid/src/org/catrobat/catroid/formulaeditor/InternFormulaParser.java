@@ -183,11 +183,18 @@ public class InternFormulaParser {
 
 		FormulaElement termListTree = termList();
 
-		if (currentToken.isEndOfFileToken()) {
-			return termListTree;
+		if (!currentToken.isEndOfFileToken()) {
+			throw new InternFormulaParserException("Parse Error");
 		}
 
-		throw new InternFormulaParserException("Parse Error");
+		FormulaElement errorElement = termListTree.checkTypes();
+
+		if (errorElement != null) {
+			currentTokenParseIndex = termListTree.getInternTokenList(errorElement).size();
+			throw new InternFormulaParserException("Parse Error - Type Checking");
+		}
+
+		return termListTree;
 	}
 
 	private FormulaElement termList() throws InternFormulaParserException {
@@ -358,4 +365,5 @@ public class InternFormulaParser {
 
 		return numberToCheck;
 	}
+
 }

@@ -146,6 +146,51 @@ public class ParserTestErrorDedection extends AndroidTestCase {
 		assertEquals("Error Token Index is not as expected", 7, errorTokenIndex);
 		internTokenList.clear();
 
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_AND.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+
+		internParser = new InternFormulaParser(internTokenList);
+		parseTree = internParser.parseFormula();
+
+		assertNull("Invalid formula parsed: 1 AND 1 ", parseTree);
+		errorTokenIndex = internParser.getErrorTokenIndex();
+		assertEquals("Error Token Index is not as expected", 0, errorTokenIndex);
+		internTokenList.clear();
+
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_AND.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+
+		internParser = new InternFormulaParser(internTokenList);
+		parseTree = internParser.parseFormula();
+
+		assertNull("Invalid formula parsed: 1 < 1 AND 1 ", parseTree);
+		errorTokenIndex = internParser.getErrorTokenIndex();
+		assertEquals("Error Token Index is not as expected", 4, errorTokenIndex);
+		internTokenList.clear();
+
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_AND.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+
+		internParser = new InternFormulaParser(internTokenList);
+		parseTree = internParser.parseFormula();
+
+		assertNull("Invalid formula parsed: ( ( ( 1 < 1 ) AND 1 ) ) ", parseTree);
+		errorTokenIndex = internParser.getErrorTokenIndex();
+		assertEquals("Error Token Index is not as expected", 8, errorTokenIndex);
+		internTokenList.clear();
 	}
 
 	public void testTooManyOperators() {
@@ -242,7 +287,7 @@ public class ParserTestErrorDedection extends AndroidTestCase {
 		parseTree = internParser.parseFormula();
 		assertNull("Invalid formula parsed: ( ", parseTree);
 		errorTokenIndex = internParser.getErrorTokenIndex();
-		assertEquals("Error Token Index is not as expected", 0, errorTokenIndex);
+		assertEquals("Error Token Index is not as expected", 1, errorTokenIndex);
 		internTokenList.clear();
 	}
 

@@ -263,42 +263,54 @@ public class ParserTest extends AndroidTestCase {
 		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_NOT.name()));
 		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
 		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
 		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_AND.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
 		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
 		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
 
 		internParser = new InternFormulaParser(internTokenList);
 		parseTreeRoot = internParser.parseFormula();
 
-		assertNotNull("Formula is not parsed correctly: NOT ( 0 AND 1 )", parseTreeRoot);
+		assertNotNull("Formula is not parsed correctly: NOT ( 0 < 0 AND 0 < 1 )", parseTreeRoot);
 		assertEquals("Formula interpretation is not as expected", 1d, parseTreeRoot.interpretRecursive(testSprite));
 		internTokenList.clear();
 
 		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_NOT.name()));
 		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
 		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
 		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_OR.name()));
 		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
 		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
 
 		internParser = new InternFormulaParser(internTokenList);
 		parseTreeRoot = internParser.parseFormula();
 
-		assertNotNull("Formula is not parsed correctly: NOT ( 1 OR 0 )", parseTreeRoot);
+		assertNotNull("Formula is not parsed correctly: NOT ( 1 < 0 OR 0 < 1 )", parseTreeRoot);
 		assertEquals("Formula interpretation is not as expected", 0d, parseTreeRoot.interpretRecursive(testSprite));
 		internTokenList.clear();
 
 		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_NOT.name()));
 		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
 		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
 		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.LOGICAL_OR.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
 		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
 		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
 
 		internParser = new InternFormulaParser(internTokenList);
 		parseTreeRoot = internParser.parseFormula();
 
-		assertNotNull("Formula is not parsed correctly: NOT ( 0 OR 0 )", parseTreeRoot);
+		assertNotNull("Formula is not parsed correctly: NOT ( 0 < 0 OR 0 < 0 )", parseTreeRoot);
 		assertEquals("Formula interpretation is not as expected", 1d, parseTreeRoot.interpretRecursive(testSprite));
 		internTokenList.clear();
 

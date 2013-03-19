@@ -23,7 +23,7 @@
 package org.catrobat.catroid.formulaeditor;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.catrobat.catroid.ProjectManager;
@@ -74,52 +74,83 @@ public class FormulaElement implements Serializable {
 		return value;
 	}
 
-	public List<InternToken> getInternTokenList() {
-		List<InternToken> internTokenList = new LinkedList<InternToken>();
+	private boolean getInternTokenListUntilElement(FormulaElement generateInternTokenListUntilThisElement,
+			List<InternToken> generatedTokenList) {
+
+		if (generateInternTokenListUntilThisElement == this) {
+			return false;
+		}
 
 		switch (type) {
 			case BRACKET:
-				internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+				generatedTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
 				if (rightChild != null) {
-					internTokenList.addAll(rightChild.getInternTokenList());
+					if (!rightChild.getInternTokenListUntilElement(generateInternTokenListUntilThisElement,
+							generatedTokenList)) {
+						return false;
+					}
 				}
-				internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+				generatedTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
 				break;
 			case OPERATOR:
 				if (leftChild != null) {
-					internTokenList.addAll(leftChild.getInternTokenList());
+					if (!leftChild.getInternTokenListUntilElement(generateInternTokenListUntilThisElement,
+							generatedTokenList)) {
+						return false;
+					}
 				}
-				internTokenList.add(new InternToken(InternTokenType.OPERATOR, this.value));
+				generatedTokenList.add(new InternToken(InternTokenType.OPERATOR, this.value));
 				if (rightChild != null) {
-					internTokenList.addAll(rightChild.getInternTokenList());
+					if (!rightChild.getInternTokenListUntilElement(generateInternTokenListUntilThisElement,
+							generatedTokenList)) {
+						return false;
+					}
 				}
 				break;
 			case FUNCTION:
-				internTokenList.add(new InternToken(InternTokenType.FUNCTION_NAME, value));
+				generatedTokenList.add(new InternToken(InternTokenType.FUNCTION_NAME, value));
 				boolean functionHasParameters = false;
 				if (leftChild != null) {
-					internTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETERS_BRACKET_OPEN));
+					generatedTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETERS_BRACKET_OPEN));
 					functionHasParameters = true;
-					internTokenList.addAll(leftChild.getInternTokenList());
+					if (!leftChild.getInternTokenListUntilElement(generateInternTokenListUntilThisElement,
+							generatedTokenList)) {
+						return false;
+					}
 				}
 				if (rightChild != null) {
-					internTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETER_DELIMITER));
-					internTokenList.addAll(rightChild.getInternTokenList());
+					generatedTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETER_DELIMITER));
+					if (!rightChild.getInternTokenListUntilElement(generateInternTokenListUntilThisElement,
+							generatedTokenList)) {
+						return false;
+					}
 				}
 				if (functionHasParameters) {
-					internTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETERS_BRACKET_CLOSE));
+					generatedTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETERS_BRACKET_CLOSE));
 				}
 				break;
 			case USER_VARIABLE:
-				internTokenList.add(new InternToken(InternTokenType.USER_VARIABLE, this.value));
+				generatedTokenList.add(new InternToken(InternTokenType.USER_VARIABLE, this.value));
 				break;
 			case NUMBER:
-				internTokenList.add(new InternToken(InternTokenType.NUMBER, this.value));
+				generatedTokenList.add(new InternToken(InternTokenType.NUMBER, this.value));
 				break;
 			case SENSOR:
-				internTokenList.add(new InternToken(InternTokenType.SENSOR, this.value));
+				generatedTokenList.add(new InternToken(InternTokenType.SENSOR, this.value));
 				break;
 		}
+		return true;
+	}
+
+	public List<InternToken> getInternTokenList() {
+		List<InternToken> internTokenList = new ArrayList<InternToken>();
+		getInternTokenListUntilElement(null, internTokenList);
+		return internTokenList;
+	}
+
+	public List<InternToken> getInternTokenList(FormulaElement createInternTokenListUntilElement) {
+		List<InternToken> internTokenList = new ArrayList<InternToken>();
+		getInternTokenListUntilElement(createInternTokenListUntilElement, internTokenList);
 		return internTokenList;
 	}
 
@@ -434,6 +465,34 @@ public class FormulaElement implements Serializable {
 		FormulaElement leftChildClone = leftChild == null ? null : leftChild.clone();
 		FormulaElement rightChildClone = rightChild == null ? null : rightChild.clone();
 		return new FormulaElement(type, new String(value), null, leftChildClone, rightChildClone);
+	}
+
+	public FormulaElement checkTypes() {
+		List<FormulaElement> children = new ArrayList<FormulaElement>();
+		if (leftChild != null) {
+			children.add(leftChild);
+		}
+		if (rightChild != null) {
+			children.add(rightChild);
+		}
+
+		if (type == ElementType.OPERATOR && Operators.valueOf(value) != null
+				&& Operators.valueOf(value).onlyLogicalChildsAllowed) {
+
+			for (FormulaElement child : children) {
+				if (child.isLogicalOperator() == false) {
+					return child;
+				}
+			}
+
+		}
+
+		for (FormulaElement child : children) {
+			return child.checkTypes();
+		}
+
+		return null;
+
 	}
 
 }
