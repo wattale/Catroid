@@ -31,7 +31,6 @@ import org.catrobat.catroid.formulaeditor.FormulaElement.ElementType;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Layout;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -60,7 +59,6 @@ public class Formula implements Serializable {
 	}
 
 	public Formula(Integer value) {
-		Log.e("info", "public Formula(Integer value) { value = " + value);
 		formulaTree = new FormulaElement(ElementType.NUMBER, value.toString(), null);
 		internFormula = new InternFormula(formulaTree.getInternTokenList());
 

@@ -23,21 +23,30 @@
 package org.catrobat.catroid.formulaeditor;
 
 public enum Operators {
-	LOGICAL_AND(2, true), LOGICAL_OR(1, true), EQUAL(3, true), NOT_EQUAL(4, true), SMALLER_OR_EQUAL(4, true), GREATER_OR_EQUAL(
+	LOGICAL_AND(2, true, true), LOGICAL_OR(1, true, true), EQUAL(3, true), NOT_EQUAL(4, true), SMALLER_OR_EQUAL(4, true), GREATER_OR_EQUAL(
 			4, true), SMALLER_THAN(4, true), GREATER_THAN(4, true), PLUS(5), MINUS(5), MULT(6), DIVIDE(6), MOD(6), POW(
-			7), LOGICAL_NOT(4, true);
+			7), LOGICAL_NOT(4, true, true);
 
 	private final Integer priority;
 	public final boolean isLogicalOperator;
+	public final boolean onlyLogicalChildsAllowed;
 
 	Operators(Integer priority) {
 		this.priority = priority;
-		isLogicalOperator = false;
+		this.isLogicalOperator = false;
+		this.onlyLogicalChildsAllowed = false;
 	}
 
 	Operators(Integer priority, boolean isLogical) {
 		this.priority = priority;
-		isLogicalOperator = isLogical;
+		this.isLogicalOperator = isLogical;
+		this.onlyLogicalChildsAllowed = false;
+	}
+
+	Operators(Integer priority, boolean isLogical, boolean onlyLogicalChildsAllowed) {
+		this.priority = priority;
+		this.isLogicalOperator = isLogical;
+		this.onlyLogicalChildsAllowed = onlyLogicalChildsAllowed;
 	}
 
 	public int compareOperatorTo(Operators op) {

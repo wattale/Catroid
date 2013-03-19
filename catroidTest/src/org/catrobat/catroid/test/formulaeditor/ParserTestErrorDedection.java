@@ -26,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.catrobat.catroid.formulaeditor.FormulaElement;
+import org.catrobat.catroid.formulaeditor.Functions;
 import org.catrobat.catroid.formulaeditor.InternFormulaParser;
 import org.catrobat.catroid.formulaeditor.InternToken;
 import org.catrobat.catroid.formulaeditor.InternTokenType;
@@ -38,6 +39,63 @@ public class ParserTestErrorDedection extends AndroidTestCase {
 	public void testLogicalMathematicalOperatorsNesting() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "3"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.MULT.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "4"));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.PLUS.name()));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "5"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.PLUS.name()));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+
+		InternFormulaParser internParser = new InternFormulaParser(internTokenList);
+		FormulaElement parseTree = internParser.parseFormula();
+
+		assertNull("Invalid formula parsed: ( ( 3 * 4 ) + ( 5 + ( 0 < 1 ) ) ) ", parseTree);
+		int errorTokenIndex = internParser.getErrorTokenIndex();
+		assertEquals("Error Token Index is not as expected", 9, errorTokenIndex);
+		internTokenList.clear();
+
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.FUNCTION_NAME, Functions.RAND.name()));
+		internTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETERS_BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETER_DELIMITER));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.FUNCTION_PARAMETERS_BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.MULT.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "4"));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.PLUS.name()));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "5"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.PLUS.name()));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "0"));
+		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.SMALLER_THAN.name()));
+		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
+
+		internParser = new InternFormulaParser(internTokenList);
+		parseTree = internParser.parseFormula();
+
+		assertNull("Invalid formula parsed: ( ( random( 0 , 1 ) * 4 ) + ( 5 + ( 0 < 1 ) ) ) ", parseTree);
+		errorTokenIndex = internParser.getErrorTokenIndex();
+		assertEquals("Error Token Index is not as expected", 14, errorTokenIndex);
+		internTokenList.clear();
+
 		internTokenList.add(new InternToken(InternTokenType.NUMBER, "5"));
 		internTokenList.add(new InternToken(InternTokenType.OPERATOR, Operators.MINUS.name()));
 		internTokenList.add(new InternToken(InternTokenType.BRACKET_OPEN));
@@ -46,11 +104,11 @@ public class ParserTestErrorDedection extends AndroidTestCase {
 		internTokenList.add(new InternToken(InternTokenType.NUMBER, "1"));
 		internTokenList.add(new InternToken(InternTokenType.BRACKET_CLOSE));
 
-		InternFormulaParser internParser = new InternFormulaParser(internTokenList);
-		FormulaElement parseTree = internParser.parseFormula();
+		internParser = new InternFormulaParser(internTokenList);
+		parseTree = internParser.parseFormula();
 
 		assertNull("Invalid formula parsed: 5 - ( 0 < 1 ) ", parseTree);
-		int errorTokenIndex = internParser.getErrorTokenIndex();
+		errorTokenIndex = internParser.getErrorTokenIndex();
 		assertEquals("Error Token Index is not as expected", 1, errorTokenIndex);
 		internTokenList.clear();
 
@@ -87,6 +145,7 @@ public class ParserTestErrorDedection extends AndroidTestCase {
 		errorTokenIndex = internParser.getErrorTokenIndex();
 		assertEquals("Error Token Index is not as expected", 7, errorTokenIndex);
 		internTokenList.clear();
+
 	}
 
 	public void testTooManyOperators() {
