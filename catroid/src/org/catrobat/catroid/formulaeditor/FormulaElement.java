@@ -488,7 +488,10 @@ public class FormulaElement implements Serializable {
 		}
 
 		for (FormulaElement child : children) {
-			return child.checkTypes();
+			FormulaElement childReturnValue = child.checkTypes();
+			if (childReturnValue != null) {
+				return childReturnValue;
+			}
 		}
 
 		return null;
