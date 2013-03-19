@@ -95,7 +95,15 @@ public class InternFormulaParser {
 		return returnElem;
 	}
 
-	public void handleOperator(String operator, FormulaElement curElem, FormulaElement newElem) {
+	public void handleOperator(String operator, FormulaElement curElem, FormulaElement newElem)
+			throws InternFormulaParserException {
+
+		Operators currentOp = Operators.getOperatorByValue(operator);
+		if ((!currentOp.isLogicalOperator && curElem.isLogicalOperator())
+				|| (!currentOp.isLogicalOperator && newElem.isLogicalOperator())) {
+			currentTokenParseIndex = curElem.getRoot().getInternTokenList().size();
+			throw new InternFormulaParserException("Parse Error - Wrong logical/mathematical operators nesting");
+		}
 
 		if (curElem.getParent() == null) {
 			new FormulaElement(FormulaElement.ElementType.OPERATOR, operator, null, curElem, newElem);
@@ -103,15 +111,14 @@ public class InternFormulaParser {
 		}
 
 		Operators parentOp = Operators.getOperatorByValue(curElem.getParent().getValue());
-		Operators currentOp = Operators.getOperatorByValue(operator);
 
 		int compareOp = parentOp.compareOperatorTo(currentOp);
 
 		if (compareOp >= 0) {
 			FormulaElement newLeftChild = findLowerOrEqualPriorityOperatorElement(currentOp, curElem);
-			FormulaElement newParent = newLeftChild.getParent();
+			FormulaElement newLeftChildParent = newLeftChild.getParent();
 
-			if (newParent != null) {
+			if (newLeftChildParent != null) {
 				newLeftChild.replaceWithSubElement(operator, newElem);
 			} else {
 				new FormulaElement(FormulaElement.ElementType.OPERATOR, operator, null, newLeftChild, newElem);

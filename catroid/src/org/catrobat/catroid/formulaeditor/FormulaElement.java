@@ -392,6 +392,11 @@ public class FormulaElement implements Serializable {
 	public boolean isLogicalOperator() {
 		if (type == ElementType.OPERATOR) {
 			return Operators.getOperatorByValue(value).isLogicalOperator;
+		} else if (type == ElementType.BRACKET) {
+			if (rightChild == null) {
+				return false;
+			}
+			return rightChild.isLogicalOperator();
 		}
 		return false;
 	}
