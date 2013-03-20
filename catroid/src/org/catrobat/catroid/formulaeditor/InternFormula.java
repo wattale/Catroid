@@ -539,11 +539,14 @@ public class InternFormula {
 				break;
 
 			case BRACKET_OPEN:
+
 				List<InternToken> bracketsInternTokens = InternFormulaUtils.generateTokenListByBracketOpen(
 						internTokenFormulaList, cursorPositionInternTokenIndex);
 
 				if (bracketsInternTokens == null || bracketsInternTokens.size() == 0) {
-					return;
+					internFormulaTokenSelection = new InternFormulaTokenSelection(internTokenSelectionType,
+							cursorPositionInternTokenIndex, cursorPositionInternTokenIndex);
+					break;
 				}
 
 				int bracketsInternTokensLastIndex = bracketsInternTokens.size() - 1;
@@ -563,7 +566,9 @@ public class InternFormula {
 						cursorPositionInternTokenIndex);
 
 				if (bracketsInternTokens == null || bracketsInternTokens.size() == 0) {
-					return;
+					internFormulaTokenSelection = new InternFormulaTokenSelection(internTokenSelectionType,
+							cursorPositionInternTokenIndex, cursorPositionInternTokenIndex);
+					break;
 				}
 
 				bracketsInternTokensLastIndex = bracketsInternTokens.size() - 1;

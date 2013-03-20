@@ -574,7 +574,7 @@ public class InternFormulaTest extends InstrumentationTestCase {
 		InternFormula internFormula = new InternFormula(internTokens);
 		internFormula.generateExternFormulaStringAndInternExternMapping(getInstrumentation().getTargetContext());
 		internFormula.setCursorAndSelection(0, true);
-		assertNull("Selection changed!", Reflection.getPrivateField(internFormula, "internFormulaTokenSelection"));
+		assertEquals("Selection not as expected", 0, internFormula.getExternSelectionStartIndex());
 
 		internTokens = new ArrayList<InternToken>();
 		internTokens.add(new InternToken(InternTokenType.BRACKET_CLOSE));
@@ -582,7 +582,7 @@ public class InternFormulaTest extends InstrumentationTestCase {
 		internFormula = new InternFormula(internTokens);
 		internFormula.generateExternFormulaStringAndInternExternMapping(getInstrumentation().getTargetContext());
 		internFormula.setCursorAndSelection(0, true);
-		assertNull("Selection changed!", Reflection.getPrivateField(internFormula, "internFormulaTokenSelection"));
+		assertEquals("Selection not as expected", 0, internFormula.getExternSelectionStartIndex());
 
 		internTokens = new ArrayList<InternToken>();
 		internTokens.add(new InternToken(InternTokenType.FUNCTION_NAME, Functions.SIN.name()));

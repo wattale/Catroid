@@ -33,9 +33,19 @@ public class InternFormulaParser {
 	private class InternFormulaParserException extends Exception {
 
 		private static final long serialVersionUID = 1L;
+		private boolean calculateErrorOffsetInBrackets = false;
 
 		public InternFormulaParserException(String errorMessage) {
 			super(errorMessage);
+		}
+
+		public InternFormulaParserException(String errorMessage, boolean calculateErrorOffsetInBrackets) {
+			super(errorMessage);
+			this.calculateErrorOffsetInBrackets = calculateErrorOffsetInBrackets;
+		}
+
+		public boolean isCalculationErrorOffsetInBrackets() {
+			return calculateErrorOffsetInBrackets;
 		}
 	}
 
@@ -71,7 +81,8 @@ public class InternFormulaParser {
 
 	}
 
-	private FormulaElement findLowerOrEqualPriorityOperatorElement(Operators currentOperator, FormulaElement currentElement) {
+	private FormulaElement findLowerOrEqualPriorityOperatorElement(Operators currentOperator,
+			FormulaElement currentElement) {
 		FormulaElement returnElement = currentElement.getParent();
 		FormulaElement notNullElement = currentElement;
 		boolean goOn = true;
@@ -95,7 +106,15 @@ public class InternFormulaParser {
 		return returnElement;
 	}
 
-	public void handleOperator(String operator, FormulaElement currentElement, FormulaElement newElement) {
+	public void handleOperator(String operator, FormulaElement currentElement, FormulaElement newElement)
+			throws InternFormulaParserException {
+
+		Operators currentOperator = Operators.getOperatorByValue(operator);
+		if ((!currentOperator.isLogicalOperator && currentElement.isLogicalOperator())
+				|| (!currentOperator.isLogicalOperator && newElement.isLogicalOperator())) {
+			currentTokenParseIndex = currentElement.getRoot().getInternTokenList().size();
+			throw new InternFormulaParserException("Parse Error - Wrong logical/mathematical operators nesting", true);
+		}
 
 		if (currentElement.getParent() == null) {
 			new FormulaElement(FormulaElement.ElementType.OPERATOR, operator, null, currentElement, newElement);
@@ -103,15 +122,15 @@ public class InternFormulaParser {
 		}
 
 		Operators parentOperator = Operators.getOperatorByValue(currentElement.getParent().getValue());
-		Operators currentOperator = Operators.getOperatorByValue(operator);
 
 		int compareOp = parentOperator.compareOperatorTo(currentOperator);
 
 		if (compareOp >= 0) {
-			FormulaElement newLeftChild = findLowerOrEqualPriorityOperatorElement(currentOperator, currentElement);
-			FormulaElement newParent = newLeftChild.getParent();
 
-			if (newParent != null) {
+			FormulaElement newLeftChild = findLowerOrEqualPriorityOperatorElement(currentOperator, currentElement);
+			FormulaElement newLeftChildParent = newLeftChild.getParent();
+
+			if (newLeftChildParent != null) {
 				newLeftChild.replaceWithSubElement(operator, newElement);
 			} else {
 				new FormulaElement(FormulaElement.ElementType.OPERATOR, operator, null, newLeftChild, newElement);
@@ -166,24 +185,39 @@ public class InternFormulaParser {
 
 		FormulaElement termListTree = termList();
 
-		if (currentToken.isEndOfFileToken()) {
-			return termListTree;
+		if (!currentToken.isEndOfFileToken()) {
+			throw new InternFormulaParserException("Parse Error");
 		}
 
-		throw new InternFormulaParserException("Parse Error");
+		FormulaElement errorElement = termListTree.checkTypes();
+
+		if (errorElement != null) {
+			currentTokenParseIndex = termListTree.getInternTokenList(errorElement).size();
+			throw new InternFormulaParserException("Parse Error - Type Checking");
+		}
+
+		return termListTree;
 	}
 
 	private FormulaElement termList() throws InternFormulaParserException {
 		FormulaElement currentElement = term();
 
-		FormulaElement loopTermTree;
+		FormulaElement loopTermTree = null;
 		String operatorStringValue;
 		while (currentToken.isOperator() && !currentToken.getTokenStringValue().equals(Operators.LOGICAL_NOT.name())) {
 
 			operatorStringValue = currentToken.getTokenStringValue();
 			getNextToken();
 
-			loopTermTree = term();
+			try {
+				loopTermTree = term();
+			} catch (InternFormulaParserException parserException) {
+				if (parserException.isCalculationErrorOffsetInBrackets()) {
+					currentTokenParseIndex += currentElement.getRoot().getInternTokenList().size() + 1;
+				}
+				throw parserException;
+			}
+
 			handleOperator(operatorStringValue, currentElement, loopTermTree);
 			currentElement = loopTermTree;
 		}
@@ -194,7 +228,9 @@ public class InternFormulaParser {
 	private FormulaElement term() throws InternFormulaParserException {
 
 		FormulaElement termTree = new FormulaElement(FormulaElement.ElementType.NUMBER, null, null);
+
 		FormulaElement currentElement = termTree;
+		boolean isLogicalChildExpected = false;
 
 		if (currentToken.isOperator() && currentToken.getTokenStringValue().equals(Operators.MINUS.name())) {
 
@@ -204,6 +240,8 @@ public class InternFormulaParser {
 
 			getNextToken();
 		} else if (currentToken.isOperator() && currentToken.getTokenStringValue().equals(Operators.LOGICAL_NOT.name())) {
+
+			isLogicalChildExpected = true;
 			currentElement = new FormulaElement(FormulaElement.ElementType.NUMBER, null, termTree, null, null);
 			termTree.replaceElement(new FormulaElement(FormulaElement.ElementType.OPERATOR, Operators.LOGICAL_NOT
 					.name(), null, null, currentElement));
@@ -219,7 +257,18 @@ public class InternFormulaParser {
 
 			getNextToken();
 
-			currentElement.replaceElement(new FormulaElement(FormulaElement.ElementType.BRACKET, null, null, null, termList()));
+			FormulaElement bracketTreeRoot = null;
+			try {
+				bracketTreeRoot = termList();
+			} catch (InternFormulaParserException parserException) {
+				if (parserException.isCalculationErrorOffsetInBrackets()) {
+					currentTokenParseIndex++;
+				}
+				throw parserException;
+			}
+
+			currentElement.replaceElement(new FormulaElement(FormulaElement.ElementType.BRACKET, null, null, null,
+					bracketTreeRoot));
 
 			if (!currentToken.isBracketClose()) {
 				throw new InternFormulaParserException("Parse Error");
@@ -238,6 +287,11 @@ public class InternFormulaParser {
 
 		} else {
 			throw new InternFormulaParserException("Parse Error");
+		}
+
+		if (isLogicalChildExpected && !currentElement.isLogicalOperator()) {
+			currentTokenParseIndex = termTree.getRoot().getInternTokenList().size();
+			throw new InternFormulaParserException("Parse Error - Wrong logical/mathematical operators nesting", true);
 		}
 
 		return termTree;
@@ -315,4 +369,5 @@ public class InternFormulaParser {
 
 		return numberToCheck;
 	}
+
 }
