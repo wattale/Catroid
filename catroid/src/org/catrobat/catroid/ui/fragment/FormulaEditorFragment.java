@@ -60,6 +60,7 @@ public class FormulaEditorFragment extends SherlockFragment implements OnKeyList
 	private static final int PARSER_OK = -1;
 	private static final int PARSER_STACK_OVERFLOW = -2;
 	private static final int PARSER_INPUT_SYNTAX_ERROR = -3;
+	private static final int PARSER_LOGICAL_FORMULA_REQUIRED = -4;
 
 	private static final int SET_FORMULA_ON_CREATE_VIEW = 0;
 	private static final int SET_FORMULA_ON_SWITCH_EDIT_TEXT = 1;
@@ -327,6 +328,9 @@ public class FormulaEditorFragment extends SherlockFragment implements OnKeyList
 		int err = formulaToParse.getErrorTokenIndex();
 		switch (err) {
 			case PARSER_OK:
+				if (currentBrick.isLogicBrick() && !formulaParseTree.isLogicalOperator()) {
+					return checkReturnWithoutSaving(PARSER_LOGICAL_FORMULA_REQUIRED);
+				}
 				currentFormula.setRoot(formulaParseTree);
 				if (formulaEditorBrick != null) {
 					currentFormula.refreshTextField(brickView);
@@ -365,6 +369,9 @@ public class FormulaEditorFragment extends SherlockFragment implements OnKeyList
 					break;
 				case PARSER_STACK_OVERFLOW:
 					showToast(R.string.formula_editor_parse_fail_formula_too_long);
+					break;
+				case PARSER_LOGICAL_FORMULA_REQUIRED:
+					showToast(R.string.formula_editor_parse_fail_logical_formula_required);
 					break;
 			}
 			return false;

@@ -61,7 +61,6 @@ public class Formula implements Serializable {
 	public Formula(Integer value) {
 		formulaTree = new FormulaElement(ElementType.NUMBER, value.toString(), null);
 		internFormula = new InternFormula(formulaTree.getInternTokenList());
-
 	}
 
 	public Formula(Double value) {

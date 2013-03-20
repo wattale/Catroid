@@ -430,6 +430,7 @@
     <string name="formula_editor_parse_fail">Fehler in der Eingabe! Zum Verwerfen erneut klicken.</string>
     <string name="formula_nothing_selected">Bitte Wert eingeben!</string>
     <string name="formula_editor_parse_fail_formula_too_long">Formel zu lang! Zum Verwerfen erneut klicken.</string>
+    <string name="formula_editor_parse_fail_logical_formula_required">Formel muss einen logischen Operator enthalten!</string>
     <string name="formula_editor_choose_look_variable">Aussehen Variable auswählen:</string>
     <string name="formula_editor_existing_user_variable">Name wird bereits verwendet!</string>
     <string name="formula_editor_bracket_open">(</string>

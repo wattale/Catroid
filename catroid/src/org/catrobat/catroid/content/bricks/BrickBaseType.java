@@ -42,6 +42,7 @@ public class BrickBaseType implements Brick {
 	protected transient boolean checked = false;
 	protected transient BrickAdapter adapter;
 	protected transient int alphaValue = 255;
+	protected boolean isLogicBrick = false;
 	public transient boolean animationState = false;
 
 	@Override
@@ -52,6 +53,11 @@ public class BrickBaseType implements Brick {
 	@Override
 	public int getAlphaValue() {
 		return alphaValue;
+	}
+
+	@Override
+	public boolean isLogicBrick() {
+		return isLogicBrick;
 	}
 
 	@Override

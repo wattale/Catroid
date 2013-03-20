@@ -72,4 +72,6 @@ public interface Brick extends Serializable {
 	public View getViewWithAlpha(int alphaValue);
 
 	void setAnimationState(boolean animationState);
+
+	public boolean isLogicBrick();
 }
