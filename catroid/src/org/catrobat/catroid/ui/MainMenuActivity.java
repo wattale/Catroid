@@ -188,7 +188,7 @@ public class MainMenuActivity extends SherlockFragmentActivity implements OnChec
 
 	public void handleContinueButton(View v) {
 		if (ProjectManager.INSTANCE.getCurrentProject() != null) {
-			Intent intent = new Intent(MainMenuActivity.this, ProjectActivity.class);
+			Intent intent = new Intent(MainMenuActivity.this, NFCActivity.class);
 			startActivity(intent);
 		}
 	}

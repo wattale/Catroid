@@ -112,6 +112,10 @@
             android:name=".ui.SettingsActivity"
             android:theme="@style/settings_activity" />
         <activity
+            android:name=".ui.NFCActivity"
+            android:theme="@style/settings_activity" 
+             android:screenOrientation="portrait" />
+        <activity
             android:name=".bluetooth.DeviceListActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity
