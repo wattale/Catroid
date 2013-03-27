@@ -331,4 +331,5 @@ public class ProjectManager {
 	public void setFileChecksumContainer(FileChecksumContainer fileChecksumContainer) {
 		this.fileChecksumContainer = fileChecksumContainer;
 	}
+
 }

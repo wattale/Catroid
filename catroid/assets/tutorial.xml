@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<at.tugraz.ist.catroid.tutorial.LessonCollection>
+    <lessonArray>
+         
+        <at.tugraz.ist.catroid.tutorial.Lesson>
+            <lessonName>Erste Schritte</lessonName>
+            <lessonContent>
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                    <tutorType>CATRO</tutorType>
+                    <x>50</x>
+                    <y>50</y>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Willkommen bei Catroid! Du bist sicher der neue Entwickler für kommende Projekte. Darf ich mich vorstellen ich bin Catro, deine persönliche Assistentenkatze. Nun zu Beginn, damit du weist worum es hier überhaupt geht. Catroid ist eine On-Device Programmiersprache für Android-Endgeräte. Also das bedeutet wir können auf jedem Gerät, auf dem das Android-Betriebssystem installiert ist, unsere eigenen Programme schreiben. Catroid basiert auf der Scratch Programmiersprache der berühmten technischen Universität MIT (Massacchusetts Institute of Technology) aus den USA. In Catroid kannst du deine eigenen Programme erstellen, diese im Internet veröffentlichen und natürlich auch die Projekte anderer Catroid-User bewundern. So genug mit meinem Gerede, meine Devise ist ganz klar Learning by Doing. Also wird es Zeit ein erstes kleines Projekt zu erstellen. Dazu klicke ... </message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                    <tutorType>MIAUS</tutorType>
+                    <x>10</x>
+                    <y>50</y>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Hey was ist denn hier los??? Los raus mit der Sprache!! Ohne mich geht hier aber gar nichts. Ich bin Miaus, grrrr und ich mag es gar nicht wenn etwas hinter meinem Rücken passiert. </message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskFlip>
+                    <tutorType>MIAUS</tutorType>
+                    <flipFast>true</flipFast>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskFlip>
+                 -->
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Ganz ruhig, Miaus. Wir machen hier nichts was du nicht bereits wissen solltest. Du weist doch bereits wie Catrobat funktioniert und wie du darin Projekte erstellen kannst. Das hab ich dir doch letztes Mal schon gezeigt. </message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Wirklich?? Mmmhhh</message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSleep>
+                    <tutorType>MIAUS</tutorType>
+                    <sleepTime>100</sleepTime>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSleep>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Also ich kann mich nur daran erinnern, dass du mir auf meinem Smartphone etwas gezeigt hast. Da war ganz bestimmt nichts über Android dabei. Daran könnte ich mich erinnern wenn du mir gezeigt hättest, wie ich meinen eigenen kleinen Roboter programmieren kann.</message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Ach Miaus, da hast du jetzt aber was ganz falsch verstanden. Du hast wieder mal nicht richtig zugehört. Mit Android meine ich nicht einen Roboter sondern das Betriebssystem, dass auf deinem Handy installiert ist. Spiele sind ein gutes Beispiel dafür, was mit Catrobat alles möglich ist. Nun gut, ich werd jetzt unserem neuen Programmierer sowieso noch alles erklären. Da kannst du gleich nochmal aufpassen. Hoffentlich hast du noch nicht alles vergessen was ich dir gezeigt habe.</message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskFlip>
+                    <tutorType>MIAUS</tutorType>
+                    <flipFast>true</flipFast>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskFlip>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Wuuuhuuuuuu</message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                                               
+            </lessonContent>
+            <lessonID>0</lessonID>
+            <currentStep>0</currentStep>
+        </at.tugraz.ist.catroid.tutorial.Lesson>
+         
+    
+        <at.tugraz.ist.catroid.tutorial.Lesson>
+            <lessonName>Erstellen eines Projekts</lessonName>
+            <lessonContent>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                    <tutorType>CATRO</tutorType>
+                    <x>50</x>
+                    <y>50</y>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>So wo fangen wir am besten an? Schauen wir uns mal an wie ein Projekt in Catrobat aussehen kann. Dafür hab ich bereits ein Projekt erstellt. So jetzt bist mal du dran. Klicke auf "Aktuelles Projekt". </message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskNotification>
+                    <tutorType>CATRO</tutorType>
+                    <notificationType>CURRENT_PROJECT_BUTTON</notificationType>
+                    <notificationString>0</notificationString>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskNotification>
+                
+                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Und aus.</message>
+                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+            </lessonContent>
+            <lessonID>1</lessonID>
+            <currentStep>0</currentStep>
+        </at.tugraz.ist.catroid.tutorial.Lesson>
+        
+    </lessonArray>
+    <currentLesson>0</currentLesson>
+</at.tugraz.ist.catroid.tutorial.LessonCollection>
