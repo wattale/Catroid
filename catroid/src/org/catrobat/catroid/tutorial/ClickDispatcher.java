@@ -45,22 +45,23 @@ public class ClickDispatcher {
 
 			case PROJECT_LIST_ITEM:
 				if (task.getNotificationString() != null) {
-					dispatchProjectListItem(Integer.parseInt(task.getNotificationString()));
+					//dispatchProjectListItem(Integer.parseInt(task.getNotificationString()));
+					dispatchButton(R.id.sprite_title);
 				} else {
 					dispatchProjectListItem(0);
 				}
 				break;
 
 			case TAB_SCRIPTS:
-				dispatchScripts("Scripts");
+				dispatchButton(R.id.program_menu_button_scripts);
 				break;
 
 			case TAB_COSTUMES:
-				dispatchScripts("Costumes");
+				dispatchButton(R.id.program_menu_button_looks);
 				break;
 
 			case TAB_SOUNDS:
-				dispatchScripts("Sounds");
+				dispatchButton(R.id.program_menu_button_sounds);
 				break;
 
 			case SOUNDS_ADD_SOUND:
@@ -127,13 +128,6 @@ public class ClickDispatcher {
 		co.fadeTo(ca);
 
 	}
-
-	//	public void dispatchMainMenu() {
-	//		ClickableArea ca = le.getButtonCenterCoordinates(R.id.current_project_button);
-	//		CloudController co = new CloudController();
-	//		co.show();
-	//		co.fadeTo(ca);
-	//	}
 
 	public void dispatchButton(int button) {
 		ClickableArea ca = le.getButtonCenterCoordinates(button);

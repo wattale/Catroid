@@ -123,6 +123,7 @@ public class MainMenuActivity extends SherlockFragmentActivity implements OnChec
 	@Override
 	protected void onResume() {
 		super.onResume();
+		Tutorial.getInstance(this).resumeTutorial();
 		if (!Utils.checkForExternalStorageAvailableAndDisplayErrorIfNot(this)) {
 			return;
 		}
@@ -136,6 +137,7 @@ public class MainMenuActivity extends SherlockFragmentActivity implements OnChec
 
 	@Override
 	public void onPause() {
+		Tutorial.getInstance(this).pauseTutorial();
 		super.onPause();
 		if (!Utils.externalStorageAvailable()) {
 			return;

@@ -84,9 +84,9 @@ public class Tutorial {
 		ScreenParameters.getInstance().setScreenParameters();
 
 		setTutorialActive();
-		//tutorialController.initalizeLessonCollection();
-		//tutorialController.initalizeLessons();
-		//tutorialController.showLessonDialog();
+		tutorialController.initalizeLessonCollection();
+		tutorialController.initalizeLessons();
+		tutorialController.showLessonDialog();
 		return;
 	}
 

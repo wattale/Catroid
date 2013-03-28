@@ -158,6 +158,7 @@ public class LayoutExaminer {
 		//	if (isListItemClicked(listView, Integer.parseInt(notificationValue)) != -1) {
 
 		Activity activity = (Activity) Tutorial.getInstance(null).getActualContext();
+		//View sprite = currentActivity.findViewById(R.id.sprite_title);
 		ListActivity listActivity = (ListActivity) activity;
 		ListView listView = listActivity.getListView();
 		View child = listView.getChildAt(itemNr);
@@ -168,7 +169,7 @@ public class LayoutExaminer {
 		int w = 50;
 		int h = child.getHeight();
 		ClickableArea ca = new ClickableArea(x, y, w, h);
-		return ca;
+		return null;
 	}
 
 }

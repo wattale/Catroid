@@ -1,108 +1,367 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<at.tugraz.ist.catroid.tutorial.LessonCollection>
+<org.catrobat.catroid.tutorial.LessonCollection>
     <lessonArray>
          
-        <at.tugraz.ist.catroid.tutorial.Lesson>
+        <org.catrobat.catroid.tutorial.Lesson>
             <lessonName>Erste Schritte</lessonName>
             <lessonContent>
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                <org.catrobat.catroid.tutorial.tasks.TaskAppear>
                     <tutorType>CATRO</tutorType>
-                    <x>50</x>
-                    <y>50</y>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                    <x>60</x>
+                    <y>55</y>
+                </org.catrobat.catroid.tutorial.tasks.TaskAppear>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
                     <tutorType>CATRO</tutorType>
-                    <message>Willkommen bei Catroid! Du bist sicher der neue Entwickler für kommende Projekte. Darf ich mich vorstellen ich bin Catro, deine persönliche Assistentenkatze. Nun zu Beginn, damit du weist worum es hier überhaupt geht. Catroid ist eine On-Device Programmiersprache für Android-Endgeräte. Also das bedeutet wir können auf jedem Gerät, auf dem das Android-Betriebssystem installiert ist, unsere eigenen Programme schreiben. Catroid basiert auf der Scratch Programmiersprache der berühmten technischen Universität MIT (Massacchusetts Institute of Technology) aus den USA. In Catroid kannst du deine eigenen Programme erstellen, diese im Internet veröffentlichen und natürlich auch die Projekte anderer Catroid-User bewundern. So genug mit meinem Gerede, meine Devise ist ganz klar Learning by Doing. Also wird es Zeit ein erstes kleines Projekt zu erstellen. Dazu klicke ... </message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <message>Willkommen bei Catroid! Du bist sicher der neue Entwickler für zukünftige Projekte. Darf ich mich vorstellen ich bin Catro, deine persönliche Assistentenkatze. Nun zu Beginn erklär ich kurz, was Catroid überhaupt ist. Catroid ist eine On-Device Programmiersprache für Android-Endgeräte. Also das bedeutet wir können auf jedem Gerät, auf dem das Android Betriebssystem installiert ist, unsere eigenen Programme schreiben. Catroid basiert auf der Scratch Programmiersprache der berühmten technischen Universität MIT (Massacchusetts Institute of Technology) aus den USA. In Catroid kannst du deine eigenen Programme erstellen, diese im Internet veröffentlichen und natürlich auch die Projekte anderer Catroid-User bewundern. So genug mit meinem Gerede, meine Devise ist ganz klar Learning by Doing. Also wird es Zeit ein erstes kleines Projekt zu erstellen. Dazu klicke ... </message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                <org.catrobat.catroid.tutorial.tasks.TaskAppear>
                     <tutorType>MIAUS</tutorType>
-                    <x>10</x>
-                    <y>50</y>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                    <x>20</x>
+                    <y>55</y>
+                </org.catrobat.catroid.tutorial.tasks.TaskAppear>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
                     <tutorType>MIAUS</tutorType>
                     <message>Hey was ist denn hier los??? Los raus mit der Sprache!! Ohne mich geht hier aber gar nichts. Ich bin Miaus, grrrr und ich mag es gar nicht wenn etwas hinter meinem Rücken passiert. </message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskFlip>
+                <org.catrobat.catroid.tutorial.tasks.TaskFlip>
                     <tutorType>MIAUS</tutorType>
                     <flipFast>true</flipFast>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskFlip>
-                 -->
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                </org.catrobat.catroid.tutorial.tasks.TaskFlip>
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
                     <tutorType>CATRO</tutorType>
-                    <message>Ganz ruhig, Miaus. Wir machen hier nichts was du nicht bereits wissen solltest. Du weist doch bereits wie Catrobat funktioniert und wie du darin Projekte erstellen kannst. Das hab ich dir doch letztes Mal schon gezeigt. </message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <message>Ganz ruhig, Miaus. Wir machen hier nichts was du nicht bereits wissen solltest. Du weist doch bereits wie Catroid funktioniert und wie du darin Projekte erstellen kannst. Das hab ich dir doch letztes Mal schon gezeigt. </message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
                     <tutorType>MIAUS</tutorType>
                     <message>Wirklich?? Mmmhhh</message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSleep>
-                    <tutorType>MIAUS</tutorType>
-                    <sleepTime>100</sleepTime>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSleep>
-                
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
                     <tutorType>MIAUS</tutorType>
                     <message>Also ich kann mich nur daran erinnern, dass du mir auf meinem Smartphone etwas gezeigt hast. Da war ganz bestimmt nichts über Android dabei. Daran könnte ich mich erinnern wenn du mir gezeigt hättest, wie ich meinen eigenen kleinen Roboter programmieren kann.</message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
                     <tutorType>CATRO</tutorType>
-                    <message>Ach Miaus, da hast du jetzt aber was ganz falsch verstanden. Du hast wieder mal nicht richtig zugehört. Mit Android meine ich nicht einen Roboter sondern das Betriebssystem, dass auf deinem Handy installiert ist. Spiele sind ein gutes Beispiel dafür, was mit Catrobat alles möglich ist. Nun gut, ich werd jetzt unserem neuen Programmierer sowieso noch alles erklären. Da kannst du gleich nochmal aufpassen. Hoffentlich hast du noch nicht alles vergessen was ich dir gezeigt habe.</message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <message>Ach Miaus, da hast du jetzt aber was ganz falsch verstanden. Du hast wieder mal nicht richtig zugehört. Mit Android meine ich nicht einen Roboter sondern das Betriebssystem, dass auf deinem Handy installiert ist. Spiele sind ein gutes Beispiel dafür, was mit Catroid alles möglich ist. Nun gut, ich werd jetzt unserem neuen Programmierer sowieso noch alles erklären. Da kannst du gleich nochmal aufpassen. Hoffentlich hast du noch nicht alles vergessen was ich dir gezeigt habe.</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskFlip>
+                <org.catrobat.catroid.tutorial.tasks.TaskFlip>
                     <tutorType>MIAUS</tutorType>
                     <flipFast>true</flipFast>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskFlip>
+                </org.catrobat.catroid.tutorial.tasks.TaskFlip>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
                     <tutorType>MIAUS</tutorType>
                     <message>Wuuuhuuuuuu</message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
                                                
             </lessonContent>
             <lessonID>0</lessonID>
             <currentStep>0</currentStep>
-        </at.tugraz.ist.catroid.tutorial.Lesson>
+        </org.catrobat.catroid.tutorial.Lesson>
          
     
-        <at.tugraz.ist.catroid.tutorial.Lesson>
-            <lessonName>Erstellen eines Projekts</lessonName>
+        <org.catrobat.catroid.tutorial.Lesson>
+            <lessonName>Catroid kennenlernen</lessonName>
             <lessonContent>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
+                <org.catrobat.catroid.tutorial.tasks.TaskAppear>
                     <tutorType>CATRO</tutorType>
-                    <x>50</x>
-                    <y>50</y>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskAppear>
-                                
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
-                    <tutorType>CATRO</tutorType>
-                    <message>So wo fangen wir am besten an? Schauen wir uns mal an wie ein Projekt in Catrobat aussehen kann. Dafür hab ich bereits ein Projekt erstellt. So jetzt bist mal du dran. Klicke auf "Aktuelles Projekt". </message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <x>60</x>
+                    <y>55</y>
+                </org.catrobat.catroid.tutorial.tasks.TaskAppear>
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskNotification>
+                <org.catrobat.catroid.tutorial.tasks.TaskAppear>
+                    <tutorType>MIAUS</tutorType>
+                    <x>20</x>
+                    <y>55</y>
+                </org.catrobat.catroid.tutorial.tasks.TaskAppear>
+                                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>So wo fangen wir am besten an? Schauen wir uns mal an wie ein Projekt in Catroid aussehen kann. Dafür hab ich bereits ein Projekt erstellt. So jetzt bist mal du dran. Klicke auf "Fortsetzen". </message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
                     <tutorType>CATRO</tutorType>
                     <notificationType>CURRENT_PROJECT_BUTTON</notificationType>
                     <notificationString>0</notificationString>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskNotification>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+               
                 
-                <at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
                     <tutorType>MIAUS</tutorType>
-                    <message>Und aus.</message>
-                </at.tugraz.ist.catroid.tutorial.tasks.TaskSay>
+                    <message>Oooohhh wo sind wir denn hier gelandet? Sieht ja interessant aus.</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                
+                 <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Gut gemacht! Soweit so gut. Hier nun die Übersicht über das Default Projekt. In diesem Fall gibt es zwei Objekte, einmal der Hintergrund und einmal die Catroid-Katze. Unter Objekten verstehen wir alles, was wir in dieses Projekt einfügen und verändern können. Hier kannst du alle möglichen Objekte zu deinem Programm hinzufügen und auch wieder löschen. Fürs erste ist dies aber nicht so wichtig. Zuerst sehen wir uns mal an, was wir mit dem Objekten machen können. Hier ist schon mal ein Hintergrund, der reicht uns einmal für den Anfang. Klicke auf "Hintergrund", dann können wir den einmal bearbeiten.</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                 <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>PROJECT_LIST_ITEM</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                 <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Huch hier sieht es ja ganz bunt aus. Was passiert wenn ich auf Scripts klicke???</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                
+                 <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>TAB_SCRIPTS</notificationType>
+                    <notificationString>2</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                 
+                 <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>So hier siehst du einmal ein erstes Skript. Ein Skript ist eine Abfolge von verschiedenen Befehlen, die das jeweilige Objekt dann ausführen muss. Hier habe ich nur Farbe zum Hintergrund hinzugefügt. So fangen wir mal an hier eine Kleinigkeit zu verändern. Fügen wir mal ein sogenanntes Brick zu unserem Skritp hinzu. Dafür klicke zuerst einmal rechts oben auf "NEU".</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                 <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>SCRIPTS_ADD_BRICK</notificationType>
+                    <notificationString>2</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                 <org.catrobat.catroid.tutorial.tasks.TaskWalk>
+                    <tutorType>CATRO</tutorType>
+                    <walkToX>50</walkToX>
+                    <walkToY>70</walkToY>
+                    <walkFast>true</walkFast>
+                </org.catrobat.catroid.tutorial.tasks.TaskWalk>
+                
+                 <org.catrobat.catroid.tutorial.tasks.TaskWalk>
+                    <tutorType>MIAUS</tutorType>
+                    <walkToX>20</walkToX>
+                    <walkToY>70</walkToY>
+                    <walkFast>true</walkFast>
+                </org.catrobat.catroid.tutorial.tasks.TaskWalk>
+                 
+                 <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Wo sind wir denn jetz schon wieder gelandet?</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                 <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>CATRO</tutorType>
+                     <message>Hier siehst du die 4 Kategorien aus denen wir Bricks auswählen können. Wähle nun mal "Aussehen" aus!</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                 <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>BRICK_CATEGORY_DIALOG</notificationType>
+                    <notificationString>1</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                 <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>CATRO</tutorType>
+                     <message>So und jetz wähle "Ändere Durchsichtigkeits-Effekt..." aus!</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>BRICK_ADD_DIALOG</notificationType>
+                    <notificationString>10</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>  
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>CATRO</tutorType>
+                     <message>So und nun setzen wir den Brick ans Ende des Scripts, indem du ihn einfach runterschiebst.</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>BRICK_DIALOG_DONE</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>MIAUS</tutorType>
+                     <message>Und das wars schon. Mehr passiert nicht. Da ist ja nur so ein komischer Stein hinzugekommen.</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>CATRO</tutorType>
+                     <message>Genau. Jede Änderung im Script wirkt sich auf das gesamte Programm aus. Diest siehst du erst wenn du das gesamte Programm ausführt wird. Nun sehen wir uns mal die weiteren Möglichkeiten hier an. Nun klicke auf Hintergründe!</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>TAB_COSTUMES</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>MIAUS</tutorType>
+                     <message>Aha aha, hier ist wieder ganz alles. Also schön langsam wird das richtig kompliziert.</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>CATRO</tutorType>
+                     <message>Das stimmt! Catroid hat sehr viele Funktionen. Deswegen helfen wir hier unseren Neulingen. Versuchen wir nun mal einen Hintergrund hinzuzufügen indem wir auf rechts oben auf "NEU" klicken.</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>COSTUMES_ADD_COSTUME</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>TAB_SOUNDS</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>MIAUS</tutorType>
+                     <message>Schon wieder was neues.</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>CATRO</tutorType>
+                     <message>Hier kannst du Musik deinen Programmen hinzufügen. Die Sounds müssen dazu auf deinem Handy gespeichert sein oder du nimmst einfach was neues auf mithilfe des Catroid Sound Recorders. </message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>           
+            
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>MIAUS</tutorType>
+                     <message>Das war jetzt aber ganz schön viel. Können wir das ganze auch einfach mal ausprobieren??</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                 
+                 <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>CATRO</tutorType>
+                     <message>Aber klar doch. Gehen wir einfach zum Startmenu zurück. Dafür klicke links oben auf das Haussymbol.</message>
+                 </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>PROJECT_HOME_BUTTON</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                     <tutorType>MIAUS</tutorType>
+                     <message>Huuuiiiii.</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                
             </lessonContent>
             <lessonID>1</lessonID>
             <currentStep>0</currentStep>
-        </at.tugraz.ist.catroid.tutorial.Lesson>
+        </org.catrobat.catroid.tutorial.Lesson>
+        
+        <org.catrobat.catroid.tutorial.Lesson>
+            <lessonName>Projekterstellung</lessonName>
+            <lessonContent>
+                <org.catrobat.catroid.tutorial.tasks.TaskAppear>
+                    <tutorType>CATRO</tutorType>
+                    <x>60</x>
+                    <y>55</y>
+                </org.catrobat.catroid.tutorial.tasks.TaskAppear>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Nachdem wir uns schon ein bisschen in den Funktionen von Catroid umgesehen haben, erstellen wir unser erstes Projekt.</message>
+                    </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskAppear>
+                    <tutorType>MIAUS</tutorType>
+                    <x>20</x>
+                    <y>55</y>
+                </org.catrobat.catroid.tutorial.tasks.TaskAppear>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Juuhhuuuuu na endlich. Das ganze Gerede wurde schon langweilig.</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Klicke auf Neues Projekt um ein Projekt anzulegen. Danach gib dem Projekt einen passenden Namen, z.B. mein neues Projekt.</message>
+               </org.catrobat.catroid.tutorial.tasks.TaskSay>
+       		
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>NEW_PROJECT_BUTTON</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Sehr gut gemacht. Nun der nächste Schritt. Füge ein Objekt dem Projekt hinzu, indem du rechts oben auf das +-Symbol klickst.</message>
+               </org.catrobat.catroid.tutorial.tasks.TaskSay>
+               
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>PROJECT_ADD_SPRITE</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Das funktioniert ja wie geschmiert. Und was machen wir jetzt??</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Wir sehen uns an wie du ein Objekt löschen kannst. Klicke einfach lange auf die Catroid Katze und wähle dann löschen aus.</message>
+               </org.catrobat.catroid.tutorial.tasks.TaskSay>
+               
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>PROJECT_LIST_ITEM</notificationType>
+                    <notificationString>1</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Yeah! Die doofe Katze ist endlich weg. So können wir nun eine Maus einfügen.</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>CATRO</tutorType>
+                    <message>Mmmhh das hab ich jetzt mal überhört. Genau bearbeiten wir unser neues Objekt. Klicken wir einfach darauf.</message>
+               </org.catrobat.catroid.tutorial.tasks.TaskSay>
+               
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>PROJECT_LIST_ITEM</notificationType>
+                    <notificationString>1</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskSay>
+                    <tutorType>MIAUS</tutorType>
+                    <message>Das hab ich schon mal gesehen. Wie langweilig alles leer.</message>
+                </org.catrobat.catroid.tutorial.tasks.TaskSay>
+       		
+                 </lessonContent>
+            <lessonID>1</lessonID>
+            <currentStep>0</currentStep>
+        </org.catrobat.catroid.tutorial.Lesson>
+        
+        
+        <!-- 
+        <org.catrobat.catroid.tutorial.Lesson>
+            <lessonName>Not Yet Implemented</lessonName>
+            <lessonContent>
+       		
+       		<org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>PROJECT_STAGE_BUTTON</notificationType>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>COSTUMES_ADD_COSTUME</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                
+                <org.catrobat.catroid.tutorial.tasks.TaskNotification>
+                    <notificationType>COSTUMES_COPY</notificationType>
+                    <notificationString>0</notificationString>
+                </org.catrobat.catroid.tutorial.tasks.TaskNotification>
+        
+                 </lessonContent>
+            <lessonID>1</lessonID>
+            <currentStep>0</currentStep>
+        </org.catrobat.catroid.tutorial.Lesson>
+        
+         -->
         
     </lessonArray>
     <currentLesson>0</currentLesson>
-</at.tugraz.ist.catroid.tutorial.LessonCollection>
+</org.catrobat.catroid.tutorial.LessonCollection>

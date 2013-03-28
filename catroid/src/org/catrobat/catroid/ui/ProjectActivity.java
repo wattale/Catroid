@@ -27,6 +27,7 @@ import org.catrobat.catroid.R;
 import org.catrobat.catroid.formulaeditor.SensorHandler;
 import org.catrobat.catroid.stage.PreStageActivity;
 import org.catrobat.catroid.stage.StageActivity;
+import org.catrobat.catroid.tutorial.Tutorial;
 import org.catrobat.catroid.ui.adapter.SpriteAdapter;
 import org.catrobat.catroid.ui.dialogs.NewSpriteDialog;
 import org.catrobat.catroid.ui.fragment.SpritesListFragment;
@@ -64,6 +65,18 @@ public class ProjectActivity extends SherlockFragmentActivity {
 
 		spritesListFragment = (SpritesListFragment) getSupportFragmentManager().findFragmentById(
 				R.id.fragment_sprites_list);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Tutorial.getInstance(this).resumeTutorial();
+	}
+
+	@Override
+	public void onPause() {
+		Tutorial.getInstance(this).pauseTutorial();
+		super.onPause();
 	}
 
 	// Code from Stackoverflow to reduce memory problems

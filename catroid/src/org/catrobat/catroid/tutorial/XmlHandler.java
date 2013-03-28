@@ -39,6 +39,7 @@ public class XmlHandler {
 			InputStream inputStream = assetManager.open("tutorial.xml");
 			lessonCollection = (LessonCollection) xstream.fromXML(inputStream);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		lessonCollection.cleanAfterXML();
 	}

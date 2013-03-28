@@ -18,13 +18,13 @@
  */
 package org.catrobat.catroid.tutorial;
 
+import org.catrobat.catroid.R;
+import org.catrobat.catroid.tutorial.tasks.Task.Tutor;
+
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.NinePatchDrawable;
-import android.util.Log;
-import org.catrobat.catroid.R;
-import org.catrobat.catroid.tutorial.tasks.Task.Tutor;
 
 /**
  * @author faxxe
@@ -58,7 +58,6 @@ public class Bubble implements SurfaceObject {
 	private boolean holdBubble = false;
 	private int updateTime = 110;
 	private long lastUpdateTime = 0;
-	private int lastNewlinePosition = 0;
 
 	public Bubble(String text, TutorialOverlay tutorialOverlay, SurfaceObjectTutor tutor, int x, int y) {
 		minWidth = ScreenParameters.getInstance().getBubbleMinWidth();
@@ -156,9 +155,8 @@ public class Bubble implements SurfaceObject {
 			while (temp < text.length() && !(text.charAt(temp) == ' ')) {
 				s += text.charAt(temp);
 				temp++;
-				Log.i("COUNTING", text.length() + "text.charAt " + temp);
 			}
-			//Log.i("COUNTING", text.length() + "text.charAt " + temp);
+
 			width = (int) paint.measureText(s);
 		}
 		return width;
@@ -176,8 +174,7 @@ public class Bubble implements SurfaceObject {
 					int width = (int) paint.measureText(textArray[currentLine]);
 
 					if (currentPosition > 0 && text.charAt(currentPosition - 1) == ' ') {
-						if ((width + getNextWordLength()) > maxWidth) {
-							Log.i("COUNTING", "bla " + text.charAt(currentPosition) + getNextWordLength());
+						if ((width + getNextWordLength()) >= maxWidth) {
 
 							if (currentLine < 3) {
 								currentLine++;
@@ -189,19 +186,11 @@ public class Bubble implements SurfaceObject {
 						}
 					}
 
-					if ((width > maxWidth && text.charAt(currentPosition) == ' ')
-							|| (bubbleBounds.left + textSize + width
-									+ ScreenParameters.getInstance().getBubbleResizeWidthMargin() > Tutorial
-									.getInstance(null).getScreenWidth())) {
+					if ((width > maxWidth && text.charAt(currentPosition) == ' ')) {
 
 						if (text.charAt(currentPosition) == ' ') {
 							currentPosition++;
-						} else {
-
-							//geht zurück zum Anfang des Wortes
-							resetCurrentPositionToLastBlank();
 						}
-						lastNewlinePosition = currentPosition;
 
 						if (currentLine < 3) {
 							currentLine++;
@@ -236,22 +225,6 @@ public class Bubble implements SurfaceObject {
 				Tutorial.getInstance(null).setNotification("Bubble finished!");
 			}
 		}
-	}
-
-	private void resetCurrentPositionToLastBlank() {
-		textArray[currentLine] = "";
-
-		while (text.charAt(currentPosition) != ' ' && currentPosition > 0) {
-			currentPosition--;
-		}
-		Log.i("bubble", "LastNewline at: " + lastNewlinePosition + " currentPosition: " + currentPosition);
-		for (int i = lastNewlinePosition; i < currentPosition; i++) {
-
-			textArray[currentLine] = textArray[currentLine] + text.charAt(i);
-			Log.i("bubble", "LastNewline at: " + lastNewlinePosition + " currentPosition: " + currentPosition);
-
-		}
-		currentPosition++;
 	}
 
 	private void resetBubble(long time) {
