@@ -25,6 +25,7 @@ package org.catrobat.catroid.ui;
 import org.catrobat.catroid.R;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -39,7 +40,7 @@ public class NFCActivity extends SherlockFragmentActivity {
 		setContentView(R.layout.activity_nfc);
 	}
 
-	public void handleContinueButton() {
+	public void clickOnRefreshTag(View view) {
 
 		((EditText) findViewById(R.id.nfc_tag)).setText("blub");
 
