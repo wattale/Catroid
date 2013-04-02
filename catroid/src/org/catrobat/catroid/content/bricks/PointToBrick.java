@@ -27,6 +27,7 @@ import java.util.List;
 
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
+import org.catrobat.catroid.content.Script;
 import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.content.actions.ExtendedActions;
 import org.catrobat.catroid.ui.ScriptActivity;
@@ -75,6 +76,18 @@ public class PointToBrick extends BrickBaseType {
 	}
 
 	@Override
+	public Sprite getSprite() {
+		return sprite;
+	}
+
+	@Override
+	public Brick copyBrickForSprite(Sprite sprite, Script script) {
+		PointToBrick copyBrick = (PointToBrick) clone();
+		copyBrick.sprite = sprite;
+		return copyBrick;
+	}
+
+	@Override
 	public View getView(final Context context, int brickId, BaseAdapter baseAdapter) {
 		if (animationState) {
 			return view;
@@ -82,6 +95,7 @@ public class PointToBrick extends BrickBaseType {
 
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		view = inflater.inflate(R.layout.brick_point_to, null);
+		view = getViewWithAlpha(alphaValue);
 
 		setCheckboxView(R.id.brick_point_to_checkbox);
 
