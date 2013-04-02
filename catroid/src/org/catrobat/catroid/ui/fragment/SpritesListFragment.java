@@ -34,6 +34,7 @@ import org.catrobat.catroid.common.LookData;
 import org.catrobat.catroid.common.SoundInfo;
 import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.io.StorageHandler;
+import org.catrobat.catroid.tutorial.Tutorial;
 import org.catrobat.catroid.ui.BottomBar;
 import org.catrobat.catroid.ui.ProgramMenuActivity;
 import org.catrobat.catroid.ui.ScriptActivity;
@@ -135,6 +136,7 @@ public class SpritesListFragment extends SherlockListFragment implements OnSprit
 	@Override
 	public void onResume() {
 		super.onResume();
+		Tutorial.getInstance(this.getActivity()).resumeTutorial();
 
 		if (actionMode != null) {
 			actionMode.finish();
@@ -176,6 +178,8 @@ public class SpritesListFragment extends SherlockListFragment implements OnSprit
 	@Override
 	public void onPause() {
 		super.onPause();
+		Tutorial.getInstance(this.getActivity()).resumeTutorial();
+
 		ProjectManager projectManager = ProjectManager.getInstance();
 		if (projectManager.getCurrentProject() != null) {
 			projectManager.saveProject();
