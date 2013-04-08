@@ -24,6 +24,7 @@ package org.catrobat.catroid.content.bricks;
 
 import java.util.List;
 
+import org.catrobat.catroid.content.Script;
 import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.ui.adapter.BrickAdapter;
 
@@ -44,6 +45,11 @@ public class BrickBaseType implements Brick {
 	protected transient int alphaValue = 255;
 	protected boolean isLogicBrick = false;
 	public transient boolean animationState = false;
+
+	@Override
+	public boolean isChecked() {
+		return checked;
+	}
 
 	@Override
 	public void setAnimationState(boolean animationState) {
@@ -133,6 +139,11 @@ public class BrickBaseType implements Brick {
 
 	@Override
 	public List<SequenceAction> addActionToSequence(SequenceAction sequence) {
+		return null;
+	}
+
+	@Override
+	public Brick copyBrickForSprite(Sprite sprite, Script script) {
 		return null;
 	}
 }

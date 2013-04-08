@@ -66,6 +66,7 @@ public class PlaySoundBrickTest extends ActivityInstrumentationTestCase2<MainMen
 		createProject();
 		solo = new Solo(getInstrumentation(), getActivity());
 		UiTestUtils.getIntoScriptActivityFromMainMenu(solo);
+		UiTestUtils.prepareStageForTest();
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class PlaySoundBrickTest extends ActivityInstrumentationTestCase2<MainMen
 	}
 
 	public void testSelectAndPlaySoundFile() {
-		solo.clickOnText(solo.getString(R.string.broadcast_nothing_selected));
+		solo.clickOnText(soundName);
 		solo.sleep(1000);
 		assertTrue(soundName + " is not in Spinner", solo.searchText(soundName));
 		assertTrue(soundName2 + " is not in Spinner", solo.searchText(soundName2));
@@ -97,7 +98,8 @@ public class PlaySoundBrickTest extends ActivityInstrumentationTestCase2<MainMen
 		assertTrue("mediaPlayer is not playing", mediaPlayer.isPlaying());
 		assertEquals("wrong file playing", 7592, mediaPlayer.getDuration());
 		solo.goBack();
-		solo.goBack();
+		solo.waitForView(solo.getView(R.id.stage_dialog_button_back));
+		solo.clickOnView(solo.getView(R.id.stage_dialog_button_back));
 
 		solo.waitForActivity(ScriptActivity.class.getSimpleName());
 		solo.clickOnText(soundName);
@@ -112,12 +114,11 @@ public class PlaySoundBrickTest extends ActivityInstrumentationTestCase2<MainMen
 	}
 
 	public void testSpinnerUpdatesDelete() {
-		String spinnerNothingText = solo.getString(R.string.broadcast_nothing_selected);
 		String buttonDeleteText = solo.getString(R.string.delete);
 		String scriptsSpinnerText = solo.getString(R.string.scripts);
 		String soundsSpinnerText = solo.getString(R.string.sounds);
 
-		solo.clickOnText(spinnerNothingText);
+		solo.clickOnText(soundName);
 		assertTrue(soundName + " is not in Spinner", solo.searchText(soundName));
 		assertTrue(soundName2 + " is not in Spinner", solo.searchText(soundName2));
 		solo.goBack();
@@ -131,18 +132,17 @@ public class PlaySoundBrickTest extends ActivityInstrumentationTestCase2<MainMen
 
 		clickOnSpinnerItem(soundsSpinnerText, scriptsSpinnerText);
 
-		solo.clickOnText(spinnerNothingText);
+		solo.clickOnText(soundName2);
 		assertFalse(soundName + " is still in Spinner", solo.searchText(soundName));
 		assertTrue(soundName2 + " is not in Spinner", solo.searchText(soundName2));
 	}
 
 	public void testSpinnerUpdatesRename() {
 		String newName = "nameRenamed";
-		String spinnerNothingText = solo.getString(R.string.broadcast_nothing_selected);
 		String scriptsSpinnerText = solo.getString(R.string.scripts);
 		String soundsSpinnerText = solo.getString(R.string.sounds);
 
-		solo.clickOnText(spinnerNothingText);
+		solo.clickOnText(soundName);
 		assertTrue(soundName + " is not in Spinner", solo.searchText(soundName));
 		assertTrue(soundName2 + " is not in Spinner", solo.searchText(soundName2));
 		solo.goBack();
@@ -157,7 +157,7 @@ public class PlaySoundBrickTest extends ActivityInstrumentationTestCase2<MainMen
 		solo.sleep(500);
 		clickOnSpinnerItem(soundsSpinnerText, scriptsSpinnerText);
 		solo.sleep(200);
-		solo.clickOnText(spinnerNothingText);
+		solo.clickOnText(soundName);
 		assertTrue(newName + " is not in Spinner", solo.searchText(newName));
 		assertTrue(soundName2 + " is not in Spinner", solo.searchText(soundName2));
 	}
