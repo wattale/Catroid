@@ -393,6 +393,7 @@
     <string name="error_no_number_entered">Please enter a number.</string>
     <string name="error_screenshot_failed">An error occurred while saving the screenshot.</string>
     <string name="error_load_image">An error occurred while loading the image.</string>
+    <string name="error_load_image_from_picasa">Error loading picasa image. Check your internet connection and try again.</string>
     <string name="error_load_sound">An error occurred while loading the sound.</string>
     <string name="error_internet_connection">An unknown error occurred. Check your Internet connection.</string>
     <string name="error_project_compatability">The project is not compatible with this version of catroid.</string>

@@ -23,7 +23,9 @@
 package org.catrobat.catroid.ui.fragment;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -59,6 +61,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -301,35 +305,76 @@ public class LookFragment extends ScriptActivityFragment implements OnLookEditLi
 		if (arguments != null) {
 			imageUri = (Uri) arguments.get(LOADER_ARGUMENTS_IMAGE_URI);
 		}
-		String[] projection = { MediaStore.MediaColumns.DATA };
+
+		String[] projection = { MediaStore.MediaColumns.DISPLAY_NAME, MediaStore.MediaColumns.DATA };
 		return new CursorLoader(getActivity(), imageUri, projection, null, null, null);
 	}
 
 	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-		String originalImagePath = "";
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		CursorLoader cursorLoader = (CursorLoader) loader;
+		if (cursor != null) {
+			cursor.moveToFirst();
+		}
+		if (cursor == null || !cursor.isNull(cursor.getColumnIndex(MediaStore.MediaColumns.DATA))) {
+			copyGalleryImageToCatroid(cursorLoader, cursor);
+		} else if (!cursor.isNull(cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME))) {
+			copyPicasaImageToCatroid(cursorLoader,
+					cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME)));
+		}
+	}
 
+	private void copyGalleryImageToCatroid(CursorLoader loader, Cursor cursor) {
+		String originalImagePath = "";
 		boolean catchedExpetion = false;
 
-		if (data == null) {
-			originalImagePath = cursorLoader.getUri().getPath();
+		if (cursor == null) {
+			originalImagePath = loader.getUri().getPath();
 		} else {
-			int columnIndex = data.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-			data.moveToFirst();
+			int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+			cursor.moveToFirst();
 
 			try {
-				originalImagePath = data.getString(columnIndex);
+				originalImagePath = cursor.getString(columnIndex);
 			} catch (CursorIndexOutOfBoundsException e) {
 				catchedExpetion = true;
 			}
 		}
 
-		if (catchedExpetion || (data == null && originalImagePath.equals(""))) {
+		if (catchedExpetion || (cursor == null && originalImagePath.equals(""))) {
 			Utils.showErrorDialog(getActivity(), getString(R.string.error_load_image));
 			return;
 		}
 		copyImageToCatroid(originalImagePath);
+	}
+
+	private void copyPicasaImageToCatroid(CursorLoader cursorLoader, String filename) {
+		Uri imageUri = cursorLoader.getUri();
+		InputStream inputStream;
+		System.out.println();
+		try {
+			inputStream = getActivity().getContentResolver().openInputStream(imageUri);
+			BitmapDrawable bitmapDrawable = new BitmapDrawable(getActivity().getResources(), inputStream);
+			Bitmap bitmap = bitmapDrawable.getBitmap();
+
+			if (bitmap != null) {
+				String currentProjectName = ProjectManager.getInstance().getCurrentProject().getName();
+				File imageDirectory = new File(Utils.buildPath(Utils.buildProjectPath(currentProjectName),
+						Constants.IMAGE_DIRECTORY));
+				File cacheFile = new File(imageDirectory, filename);
+				try {
+					StorageHandler.saveBitmapToImageFile(cacheFile, bitmap);
+					copyImageToCatroid(cacheFile.getAbsolutePath());
+				} catch (FileNotFoundException fileNotFoundException) {
+					Utils.showErrorDialog(getActivity(), getString(R.string.error_load_image));
+				}
+				cacheFile.delete();
+			} else {
+				throw new FileNotFoundException("Couldn't resolve picasa uri.");
+			}
+		} catch (FileNotFoundException fileNotFoundException) {
+			Utils.showErrorDialog(getActivity(), getString(R.string.error_load_image_from_picasa));
+		}
 	}
 
 	@Override
@@ -534,6 +579,7 @@ public class LookFragment extends ScriptActivityFragment implements OnLookEditLi
 					return;
 				}
 			}
+			// XXX: Call pixmap.dispose to prevent memory leaks!
 			pixmap = null;
 			updateLookAdapter(imageName, imageFileName);
 		} catch (IOException e) {

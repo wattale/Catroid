@@ -393,6 +393,7 @@
     <string name="error_no_number_entered">Bitte eine Zahl eingeben.</string>
     <string name="error_screenshot_failed">Beim Speichern des Screenshots ist ein Fehler aufgetreten.</string>
     <string name="error_load_image">Beim Laden des Bildes ist ein Fehler aufgetreten.</string>
+    <string name="error_load_image_from_picasa">Beim Laden des Picasa-Bildes ist ein Fehler aufgetreten. Bitte die Internetverbindung überprüfen und erneut versuchen.</string>
     <string name="error_load_sound">Beim Laden des Audiofiles ist ein Fehler aufgetreten.</string>
     <string name="error_internet_connection">Unbekannter Fehler aufgetreten. Überprüfe deine Internetverbindung.</string>
     <string name="error_project_compatability">Das Projekt ist nicht mit dieser Version von Catroid kompatibel.</string>
