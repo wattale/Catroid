@@ -31,6 +31,7 @@ import org.catrobat.catroid.content.Script;
 import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.content.actions.ExtendedActions;
 import org.catrobat.catroid.formulaeditor.Formula;
+import org.catrobat.catroid.formulaeditor.InternFormula;
 import org.catrobat.catroid.ui.fragment.FormulaEditorFragment;
 
 import android.content.Context;
@@ -144,7 +145,12 @@ public class IfLogicBeginBrick extends NestingBrick implements OnClickListener {
 
 	@Override
 	public View getPrototypeView(Context context) {
-		return View.inflate(context, R.layout.brick_if_begin_if, null);
+		View prototypeView = View.inflate(context, R.layout.brick_if_begin_if, null);
+		TextView text1 = (TextView) prototypeView.findViewById(R.id.brick_if_text_view1);
+		InternFormula ifConditionInternFormula = ifCondition.getInternFormulaState().createInternFormulaFromState();
+		ifConditionInternFormula.generateExternFormulaStringAndInternExternMapping(context);
+		text1.setText(ifConditionInternFormula.getExternFormulaString());
+		return prototypeView;
 	}
 
 	@Override
@@ -214,7 +220,7 @@ public class IfLogicBeginBrick extends NestingBrick implements OnClickListener {
 	public Brick copyBrickForSprite(Sprite sprite, Script script) {
 		//ifEndBrick and ifElseBrick will be set in the copyBrickForSprite method of IfLogicEndBrick
 		IfLogicBeginBrick copyBrick = (IfLogicBeginBrick) clone(); //Using the clone method because of its flexibility if new fields are added  
-		copyBrick.ifElseBrick = null; 							   //if the Formula gets a field sprite, a seperate copy method will be needed
+		copyBrick.ifElseBrick = null; //if the Formula gets a field sprite, a seperate copy method will be needed
 		copyBrick.ifEndBrick = null;
 		copyBrick.sprite = sprite;
 		return copyBrick;

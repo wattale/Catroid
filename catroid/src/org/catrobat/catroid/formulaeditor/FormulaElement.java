@@ -78,7 +78,9 @@ public class FormulaElement implements Serializable {
 			List<InternToken> generatedTokenList) {
 
 		if (generateInternTokenListUntilThisElement == this) {
-			return false;
+			if (type != ElementType.OPERATOR) {
+				return false;
+			}
 		}
 
 		switch (type) {
@@ -98,6 +100,9 @@ public class FormulaElement implements Serializable {
 							generatedTokenList)) {
 						return false;
 					}
+				}
+				if (generateInternTokenListUntilThisElement == this) {
+					return false;
 				}
 				generatedTokenList.add(new InternToken(InternTokenType.OPERATOR, this.value));
 				if (rightChild != null) {
@@ -476,15 +481,23 @@ public class FormulaElement implements Serializable {
 			children.add(rightChild);
 		}
 
-		if (type == ElementType.OPERATOR && Operators.valueOf(value) != null
-				&& Operators.valueOf(value).onlyLogicalChildsAllowed) {
-
-			for (FormulaElement child : children) {
-				if (child.isLogicalOperator() == false) {
-					return child;
+		if (type == ElementType.OPERATOR && Operators.valueOf(value) != null) {
+			if (Operators.valueOf(value).isLogicalOperator == false) {
+				for (FormulaElement child : children) {
+					if (child.isLogicalOperator() == true) {
+						return this;
+					}
 				}
 			}
+			if (Operators.valueOf(value).onlyLogicalChildsAllowed) {
 
+				for (FormulaElement child : children) {
+					if (child.isLogicalOperator() == false) {
+						return child;
+					}
+				}
+
+			}
 		}
 
 		for (FormulaElement child : children) {

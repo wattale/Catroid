@@ -209,7 +209,11 @@ public class FormulaEditorFragment extends SherlockFragment implements OnKeyList
 									formulaEditorEditText.setParseErrorCursorAndSelection();
 								}
 								return false;
+							} else if (currentBrick.isLogicBrick() && !formulaElement.isLogicalOperator()) {
+								showToast(R.string.formula_editor_parse_fail_logical_formula_required);
+								return false;
 							}
+
 							Formula formulaToCompute = new Formula(formulaElement);
 							FormulaEditorComputeDialog computeDialog = new FormulaEditorComputeDialog(context);
 							computeDialog.setFormula(formulaToCompute);

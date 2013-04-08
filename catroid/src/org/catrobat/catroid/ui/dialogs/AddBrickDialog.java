@@ -336,7 +336,7 @@ public class AddBrickDialog extends DialogFragment {
 		controlBrickList.add(noteBrick);
 
 		controlBrickList.add(new ForeverBrick(sprite));
-		controlBrickList.add(new IfLogicBeginBrick(sprite, 0));
+		controlBrickList.add(new IfLogicBeginBrick(sprite, BrickValues.IF_LOGIC_CONDITION));
 
 		RepeatBrick repeatBrick = new RepeatBrick(sprite, BrickValues.REPEAT);
 		controlBrickList.add(repeatBrick);
