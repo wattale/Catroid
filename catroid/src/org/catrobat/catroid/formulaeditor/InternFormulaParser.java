@@ -109,19 +109,13 @@ public class InternFormulaParser {
 	public void handleOperator(String operator, FormulaElement currentElement, FormulaElement newElement)
 			throws InternFormulaParserException {
 
-		Operators currentOperator = Operators.getOperatorByValue(operator);
-		if ((!currentOperator.isLogicalOperator && currentElement.isLogicalOperator())
-				|| (!currentOperator.isLogicalOperator && newElement.isLogicalOperator())) {
-			currentTokenParseIndex = currentElement.getRoot().getInternTokenList().size();
-			throw new InternFormulaParserException("Parse Error - Wrong logical/mathematical operators nesting", true);
-		}
-
 		if (currentElement.getParent() == null) {
 			new FormulaElement(FormulaElement.ElementType.OPERATOR, operator, null, currentElement, newElement);
 			return;
 		}
 
 		Operators parentOperator = Operators.getOperatorByValue(currentElement.getParent().getValue());
+		Operators currentOperator = Operators.getOperatorByValue(operator);
 
 		int compareOp = parentOperator.compareOperatorTo(currentOperator);
 
