@@ -28,6 +28,7 @@ import org.catrobat.catroid.common.Values;
 import org.catrobat.catroid.formulaeditor.SensorHandler;
 import org.catrobat.catroid.ui.dialogs.StageDialog;
 
+import android.app.ProgressDialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -39,6 +40,7 @@ public class StageActivity extends AndroidApplication {
 	public static StageListener stageListener;
 	private boolean resizePossible;
 	private StageDialog stageDialog;
+	private ProgressDialog loadingDialog;
 
 	public static final int STAGE_ACTIVITY_FINISH = 7777;
 
@@ -69,6 +71,7 @@ public class StageActivity extends AndroidApplication {
 		stageListener.finish();
 
 		PreStageActivity.shutdownResources();
+		loadingDialog.dismiss();
 	}
 
 	public void pause() {
@@ -109,6 +112,10 @@ public class StageActivity extends AndroidApplication {
 			Values.SCREEN_HEIGHT = Values.SCREEN_WIDTH;
 			Values.SCREEN_WIDTH = tmp;
 		}
+	}
+
+	public void showLoadingDialog() {
+		loadingDialog = ProgressDialog.show(this, "", getString(R.string.progress_dialog_loading));
 	}
 
 }

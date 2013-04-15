@@ -98,6 +98,7 @@ public class StageDialog extends Dialog implements View.OnClickListener {
 	@Override
 	public void onBackPressed() {
 		dismiss();
+		stageActivity.showLoadingDialog();
 		new FinishThreadAndDisposeTexturesTask().execute(null, null, null);
 	}
 

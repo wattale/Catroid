@@ -507,5 +507,6 @@
     <string name="formula_editor_variable_dialog_hint">Namen eingeben</string>
     <string name="formula_editor_variable_context_action_item_selected">Variablen ausgewählt!</string>
     <!--  -->
+    <string name="progress_dialog_loading">Es wird geladen...</string>
 
 </resources>
